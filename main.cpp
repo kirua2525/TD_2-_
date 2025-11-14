@@ -34,16 +34,16 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 
 	//プレイヤーステータス
-	int playerHP = 200;
-	int playerSP = 0;
-	int swordAttack = 20;
-	int gunAttack = 40;
-	int hammerAttack = 60;
+	//int playerHP = 200;
+	//int playerSP = 0;
+	//int swordAttack = 20;
+	//int gunAttack = 40;
+	//int hammerAttack = 60;
 
 	//ボスステータス
-	int BossOneHP = 1000;
-	int BossTwoHP = 1000;
-	int BossThree = 2000;
+	//int BossOneHP = 1000;
+	//int BossTwoHP = 1000;
+	//int BossThree = 2000;
 
 
 
@@ -167,6 +167,10 @@ blockHandle = Novice::LoadTexture("./Resources/images/karieJimen.png");
 			///
 			///↓描画処理ここから
 			/// 
+
+			//デバック表示
+			Novice::ScreenPrintf(10, 10, "SCENE_SELECT");
+
 
 			///
 			///↑描画処理ここまで
