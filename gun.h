@@ -12,10 +12,11 @@ public:
 	Vector2 size;
 	float angle;
 	int color;
-	int texture;
+	//int texture;
 	float damage;
 	float minDamage;
 	float maxDamage;
+	bool isShot;
 	
 public:
 	void Initialize(
@@ -23,12 +24,13 @@ public:
 		Vector2 size,
 		float angle,
 		int color,
-		int texture,
+		//int texture,
 		float damage,
 		float minDamage,
-		float maxDamage
+		float maxDamage,
+		bool isShot
 	);
 	void Update();
-	void Drow();
+	void Draw();
 
 };

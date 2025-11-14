@@ -5,26 +5,28 @@ void SpecialWeapon::Initialize(
 	Vector2 specialWeaponSize,
 	float specialWeaponAngle,
 	int specialWeaponColor,
-	int specialWeaponTexture,
+	//int specialWeaponTexture,
 	float specialWeaponDamage,
 	float specialWeaponMinDamage,
-	float specialWeaponMaxDamage
+	float specialWeaponMaxDamage,
+	bool specialWeaponIsHit
 ) {
 	this->pos = specialWeaponPos;
 	this->size = specialWeaponSize;
 	this->angle = specialWeaponAngle;
 	this->color = specialWeaponColor;
-	this->texture = specialWeaponTexture;
+	//this->texture = specialWeaponTexture;
 	this->damage = specialWeaponDamage;
 	this->maxDamage = specialWeaponMaxDamage;
 	this->minDamage = specialWeaponMinDamage;
+	this->isHit = specialWeaponIsHit;
 }
 
 void SpecialWeapon::Update() {
 
 }
 
-void SpecialWeapon::Drow() {
+void SpecialWeapon::Draw() {
 	Novice::DrawBox(
 		(int)this->pos.x,
 		(int)this->pos.y,

@@ -5,27 +5,31 @@ void Sword::Initialize(
 	Vector2 swordPos,
 	Vector2 swordSize,
 	float swordAngle,
+	float swordAngleRotate,
 	int swordColor,
-	int swordTexture,
+	//int swordTexture,
 	float swordDamage,
 	float swordMinDamage,
-	float swordMaxDamage
+	float swordMaxDamage,
+	bool swordIsHit
 ) {
 	this->pos = swordPos;
 	this->size = swordSize;
 	this->angle = swordAngle;
+	this->angleRotate = swordAngleRotate;
 	this->color = swordColor;
-	this->texture = swordTexture;
+	//this->texture = swordTexture;
 	this->damage = swordDamage;
 	this->maxDamage = swordMaxDamage;
 	this->minDamage = swordMinDamage;
+	this->isHit = swordIsHit;
 }
 
 void Sword::Update() {
 
 }
 
-void Sword::Drow() {
+void Sword::Draw() {
 	Novice::DrawBox(
 		(int)this->pos.x,
 		(int)this->pos.y,
