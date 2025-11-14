@@ -68,9 +68,9 @@ void Player::Update(const char* keys, const char* prekeys) {
 	//jump
 	if (this->isOnGround) {
 		if (wPressed || upPressed || spacePressed) {
-			this->velocity.y = -this->jumpSpeed;
-			this->isOnGround = false;
-		}
+		this->velocity.y = -this->jumpSpeed;
+		this->isOnGround = false;
+	}
 	}
 
 	Player::Gravity();
