@@ -7,9 +7,9 @@ void Gun::Initialize(
 	float gunAngle,
 	int gunColor,
 	//int gunTexture,
-	float gunDamage,
-	float gunMinDamage,
-	float gunMaxDamage,
+	int gunDamage,
+	int gunMinDamage,
+	int gunMaxDamage,
 	bool gunIsShot
 ){ 
 	this->pos = gunPos;
@@ -21,6 +21,12 @@ void Gun::Initialize(
 	this->maxDamage = gunMaxDamage;
 	this->minDamage = gunMinDamage;
 	this->isShot = gunIsShot;
+}
+
+void Gun::Damage() {
+	if (this->isShot) {
+
+	}
 }
 
 void Gun::Update() {

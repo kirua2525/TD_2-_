@@ -3,6 +3,7 @@
 #include <Novice.h>
 #include <math.h>
 #include <time.h>
+
 #include "Vector2.h"
 #include "player.h"
 
@@ -13,9 +14,9 @@ public:
 	float angle;
 	int color;
 	//int texture;
-	float damage;
-	float minDamage;
-	float maxDamage;
+	int damage;
+	int minDamage;
+	int maxDamage;
 	bool isShot;
 	
 public:
@@ -25,11 +26,12 @@ public:
 		float angle,
 		int color,
 		//int texture,
-		float damage,
-		float minDamage,
-		float maxDamage,
+		int damage,
+		int minDamage,
+		int maxDamage,
 		bool isShot
 	);
+	void Damage();
 	void Update();
 	void Draw();
 

@@ -26,6 +26,15 @@
     <ClCompile Include="Vector2.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
+    <ClCompile Include="gun.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="specialWeapon.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="sword.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -111,5 +120,8 @@
     </ClInclude>
     <ClInclude Include="player.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="gun.h" />
+    <ClInclude Include="specialWeapon.h" />
+    <ClInclude Include="sword.h" />
   </ItemGroup>
 </Project>

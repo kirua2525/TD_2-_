@@ -6,9 +6,9 @@ void SpecialWeapon::Initialize(
 	float specialWeaponAngle,
 	int specialWeaponColor,
 	//int specialWeaponTexture,
-	float specialWeaponDamage,
-	float specialWeaponMinDamage,
-	float specialWeaponMaxDamage,
+	int specialWeaponDamage,
+	int specialWeaponMinDamage,
+	int specialWeaponMaxDamage,
 	bool specialWeaponIsHit
 ) {
 	this->pos = specialWeaponPos;
@@ -20,6 +20,12 @@ void SpecialWeapon::Initialize(
 	this->maxDamage = specialWeaponMaxDamage;
 	this->minDamage = specialWeaponMinDamage;
 	this->isHit = specialWeaponIsHit;
+}
+
+void SpecialWeapon::Damage() {
+	if (this->isHit == true) {
+
+	}
 }
 
 void SpecialWeapon::Update() {

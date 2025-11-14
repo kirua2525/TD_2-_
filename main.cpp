@@ -1,6 +1,10 @@
 #include <Novice.h>
 #include <math.h>
+#include <time.h>
 #include "player.h"
+#include "sword.h"
+#include "gun.h"
+#include "specialWeapon.h"
 
 const char kWindowTitle[] = "LC1D_21_ナガタ_キルア_(確認課題)";
 
@@ -13,6 +17,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	// キー入力結果を受け取る箱
 	char keys[256] = {0};
 	char preKeys[256] = {0};
+
+	srand((unsigned int)time(nullptr));
 
 	Player player;
     player.Initialize(
@@ -35,11 +41,42 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		Player::weaponType::SWORD
     );
 
-	//Sword sword;
+	Sword sword;
+	sword.Initialize(
+		Vector2{ player.pos.x, player.pos.y },
+		Vector2{ 10.0f,3.0f },
+		0.0f,
+		1.0f,
+		WHITE,
+		rand() % ((100 + 50 + 1) + 50),
+		10,
+		150,
+		false
+		);
 
-	//Gun gun;
+	Gun gun;
+	gun.Initialize(
+		Vector2{ player.pos.x, player.pos.y },
+		Vector2{ 10.0f,3.0f },
+		0.0f,
+		WHITE,
+		rand() % ((100 + 50 + 1) + 50),
+		10,
+		150,
+		false
+	);
 
-	//SpecialWeapon hammer;
+	SpecialWeapon hammer;
+	gun.Initialize(
+		Vector2{ player.pos.x, player.pos.y },
+		Vector2{ 10.0f,3.0f },
+		0.0f,
+		WHITE,
+		300,
+		300,
+		300,
+		false
+	);
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -57,6 +94,21 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		//プレイヤーの更新
 		player.Update(keys,preKeys);
 
+		if (player.currentWeapon == Player::weaponType::SWORD) {
+			//剣の更新処理
+			sword.Update();
+
+		}
+		else if (player.currentWeapon == Player::weaponType::GUN) {
+			//銃の更新処理
+			gun.Update();
+
+		}
+		else if (player.currentWeapon == Player::weaponType::SPECIAL_ITEM) {
+			//特殊アイテムの更新処理
+			hammer.Update();
+		}
+
 		///
 		/// ↑更新処理ここまで
 		///
@@ -67,6 +119,21 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 		//プレイヤーの描画
 		player.Draw();
+
+		if (player.currentWeapon == Player::weaponType::SWORD) {
+			//剣の描画
+			sword.Draw();
+
+		}
+		else if (player.currentWeapon == Player::weaponType::GUN) {
+			//銃の描画
+			gun.Draw();
+
+		}
+		else if (player.currentWeapon == Player::weaponType::SPECIAL_ITEM) {
+			//特殊アイテムの描画
+			hammer.Draw();
+		}
 
 		//debug
 		player.debugDraw();

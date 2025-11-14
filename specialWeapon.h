@@ -14,9 +14,9 @@ public:
 	float angle;
 	int color;
 	//int texture;
-	float damage;
-	float minDamage;
-	float maxDamage;
+	int damage;
+	int minDamage;
+	int maxDamage;
 	bool isHit;
 
 public:
@@ -26,11 +26,14 @@ public:
 		float angle,
 		int color,
 		//int texture,
-		float damage,
-		float minDamage,
-		float maxDamage,
+		int damage,
+		int minDamage,
+		int maxDamage,
 		bool isHit
 	);
+
+public:
+	void Damage();
 	void Update();
 	void Draw();
 

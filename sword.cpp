@@ -8,9 +8,9 @@ void Sword::Initialize(
 	float swordAngleRotate,
 	int swordColor,
 	//int swordTexture,
-	float swordDamage,
-	float swordMinDamage,
-	float swordMaxDamage,
+	int swordDamage,
+	int swordMinDamage,
+	int swordMaxDamage,
 	bool swordIsHit
 ) {
 	this->pos = swordPos;
@@ -23,6 +23,12 @@ void Sword::Initialize(
 	this->maxDamage = swordMaxDamage;
 	this->minDamage = swordMinDamage;
 	this->isHit = swordIsHit;
+}
+
+void Sword::Damage() {
+	if (this->isHit) {
+
+	}
 }
 
 void Sword::Update() {
