@@ -18,7 +18,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	Player chara;
     chara.Initialize(
         Vector2{100.0f, 600.0f}, // pos
-        Vector2{0.0f, 0.0f},     // velocity
+        Vector2{5.0f, 0.0f},     // velocity
         Vector2{50.0f, 50.0f},   // size
         Vector2{25.0f, 25.0f},   // playerRadius
         0.0f,                     // angle
@@ -29,7 +29,11 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
         true,                     // visible
         false,                    // jumping
         false,                    // moving
-        false                     // onGround
+        false,                    // onGround
+		false,					  // 
+		false,
+		false,
+		Player::weaponType::SWORD
     );
 
 	// ウィンドウの×ボタンが押されるまでループ
@@ -46,7 +50,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		///
 
 		//プレイヤーの更新
-		chara.Update(keys);
+		chara.Update(keys,preKeys);
 
 		///
 		/// ↑更新処理ここまで
@@ -58,6 +62,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 		//プレイヤーの描画
 		chara.Draw();
+
+		//デバッグ用描画
+		chara.debugDraw();
 
 		///
 		/// ↑描画処理ここまで
