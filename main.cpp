@@ -15,8 +15,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	char keys[256] = {0};
 	char preKeys[256] = {0};
 
-	Player chara;
-    chara.Initialize(
+	Player player;
+    player.Initialize(
         Vector2{100.0f, 600.0f}, // pos
         Vector2{5.0f, 0.0f},     // velocity
         Vector2{50.0f, 50.0f},   // size
@@ -50,7 +50,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		///
 
 		//プレイヤーの更新
-		chara.Update(keys,preKeys);
+		player.Update(keys,preKeys);
 
 		///
 		/// ↑更新処理ここまで
@@ -59,6 +59,12 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		///
 		/// ↓描画処理ここから
 		///
+
+		//プレイヤーの描画
+		player.Draw();
+
+		//debug
+		player.debugDraw();
 
 		///
 		/// ↑描画処理ここまで

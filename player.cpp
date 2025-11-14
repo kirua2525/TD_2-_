@@ -99,7 +99,9 @@ void Player::Update(const char* keys, const char* prekeys) {
 	//Processing for each weapon
 	switch (this->currentWeapon) {
 	case SWORD:
-		this->isAttackSword = true;
+		if (!prekeys[DIK_SPACE] && keys[DIK_SPACE]) {
+			this->isAttackSword = true;
+		}
 		break;
 
 	case GUN:
@@ -109,7 +111,9 @@ void Player::Update(const char* keys, const char* prekeys) {
 		break;
 
 	case SPECIAL_ITEM:
-		this->isAttackSpecialItem = true;
+		if (!prekeys[DIK_SPACE] && keys[DIK_SPACE]) {
+			this->isAttackSpecialItem = true;
+		}
 		break;
 	}
 }
