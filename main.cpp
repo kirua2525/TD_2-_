@@ -1,4 +1,7 @@
 #include <Novice.h>
+#include <math.h>
+#include "Vector2.h"
+#include "player.h"
 
 const char kWindowTitle[] = "LC1D_21_ナガタ_キルア_(確認課題)";
 
@@ -11,6 +14,23 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	// キー入力結果を受け取る箱
 	char keys[256] = {0};
 	char preKeys[256] = {0};
+
+	Player chara;
+    chara.Initialize(
+        Vector2{100.0f, 600.0f}, // pos
+        Vector2{0.0f, 0.0f},     // velocity
+        Vector2{50.0f, 50.0f},   // size
+        Vector2{25.0f, 25.0f},   // playerRadius
+        0.0f,                     // angle
+        0xFF0000FF,               // enemyColor
+        //textureHandle
+        15.0f,                    // jumpSpeed
+        true,                     // alive
+        true,                     // visible
+        false,                    // jumping
+        false,                    // moving
+        false                     // onGround
+    );
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -25,6 +45,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		/// ↓更新処理ここから
 		///
 
+		//プレイヤーの更新
+		chara.Update(keys);
+
 		///
 		/// ↑更新処理ここまで
 		///
@@ -32,6 +55,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		///
 		/// ↓描画処理ここから
 		///
+
+		//プレイヤーの描画
+		chara.Draw();
 
 		///
 		/// ↑描画処理ここまで
