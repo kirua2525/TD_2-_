@@ -1,6 +1,13 @@
 #pragma once
 
+#include <Novice.h>
+#include <math.h>
+#include <time.h>
+
 #include "Vector2.h"
+#include "sword.h"
+#include "gun.h"
+#include "specialWeapon.h"
 
 class Player {
 public:
@@ -20,9 +27,6 @@ public:
 	float hp;
 	float maxHp;
 	float minHp;
-	float damage;
-	float minDamage;
-	float maxDamage;
 	//int texture;
 	float jumpSpeed;
 	bool isAlive; 

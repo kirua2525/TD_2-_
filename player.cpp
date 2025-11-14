@@ -1,9 +1,6 @@
-#include <Novice.h>
-#include <math.h>
-#include <time.h>
-#include "Vector2.h"
 #include "player.h"
 
+//Constructor
 void Player::Initialize(
 	Vector2 playerPos,
 	Vector2 playerVelocity,

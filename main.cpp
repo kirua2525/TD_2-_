@@ -1,6 +1,5 @@
 #include <Novice.h>
 #include <math.h>
-#include "Vector2.h"
 #include "player.h"
 
 const char kWindowTitle[] = "LC1D_21_ナガタ_キルア_(確認課題)";
@@ -35,6 +34,12 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		false,
 		Player::weaponType::SWORD
     );
+
+	//Sword sword;
+
+	//Gun gun;
+
+	//SpecialWeapon hammer;
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {

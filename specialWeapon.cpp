@@ -1,0 +1,37 @@
+#include "specialWeapon.h"
+
+void SpecialWeapon::Initialize(
+	Vector2 specialWeaponPos,
+	Vector2 specialWeaponSize,
+	float specialWeaponAngle,
+	int specialWeaponColor,
+	int specialWeaponTexture,
+	float specialWeaponDamage,
+	float specialWeaponMinDamage,
+	float specialWeaponMaxDamage
+) {
+	this->pos = specialWeaponPos;
+	this->size = specialWeaponSize;
+	this->angle = specialWeaponAngle;
+	this->color = specialWeaponColor;
+	this->texture = specialWeaponTexture;
+	this->damage = specialWeaponDamage;
+	this->maxDamage = specialWeaponMaxDamage;
+	this->minDamage = specialWeaponMinDamage;
+}
+
+void SpecialWeapon::Update() {
+
+}
+
+void SpecialWeapon::Drow() {
+	Novice::DrawBox(
+		(int)this->pos.x,
+		(int)this->pos.y,
+		(int)this->size.x,
+		(int)this->size.y,
+		this->angle,
+		this->color,
+		kFillModeSolid
+	);
+}
