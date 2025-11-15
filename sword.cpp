@@ -1,6 +1,8 @@
 #include "player.h"
 #include "sword.h"
 
+
+
 void Sword::Initialize(
 	Vector2 swordPos,
 	Vector2 swordSize,
@@ -31,8 +33,9 @@ void Sword::Damage() {
 	}
 }
 
-void Sword::Update() {
-
+void Sword::Update(Player player) {
+	this->pos.x = player.pos.x + player.radius.x;
+	this->pos.y = player.pos.y + player.radius.y;
 }
 
 void Sword::Draw() {

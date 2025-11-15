@@ -119,8 +119,8 @@ void Player::Draw() {
 	Novice::DrawBox(
 		(int)this->pos.x,
 		(int)this->pos.y,
-		(int)this->radius.x,
-		(int)this->radius.y,
+		(int)this->size.x,
+		(int)this->size.y,
 		this->angle,
 		this->color,
 		kFillModeSolid

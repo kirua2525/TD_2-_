@@ -7,6 +7,8 @@
 #include "Vector2.h"
 #include "player.h"
 
+class Player;
+
 class Gun {
 public:
 	Vector2 pos;
@@ -32,7 +34,7 @@ public:
 		bool isShot
 	);
 	void Damage();
-	void Update();
+	void Update(Player player);
 	void Draw();
 
 };

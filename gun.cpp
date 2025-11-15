@@ -29,7 +29,9 @@ void Gun::Damage() {
 	}
 }
 
-void Gun::Update() {
+void Gun::Update(Player player) {
+	this->pos.x = player.pos.x + player.radius.x;
+	this->pos.y = player.pos.y + player.radius.y;
 
 }
 

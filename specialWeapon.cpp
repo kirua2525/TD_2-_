@@ -28,8 +28,9 @@ void SpecialWeapon::Damage() {
 	}
 }
 
-void SpecialWeapon::Update() {
-
+void SpecialWeapon::Update(Player player) {
+	this->pos.x = player.pos.x + player.radius.x;
+	this->pos.y = player.pos.y + player.radius.y;
 }
 
 void SpecialWeapon::Draw() {

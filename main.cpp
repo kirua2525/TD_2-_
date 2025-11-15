@@ -27,7 +27,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
         Vector2{50.0f, 50.0f},   // size
         Vector2{25.0f, 25.0f},   // playerRadius
         0.0f,                     // angle
-        0xFF0000FF,               // enemyColor
+        0x000000FF,               // enemyColor
         //textureHandle
         15.0f,                    // jumpSpeed
         true,                     // alive
@@ -38,7 +38,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		false,					  // 
 		false,
 		false,
-		Player::weaponType::SWORD
+		Player::weaponType::SWORD //最初を剣にする
     );
 
 	Sword sword;
@@ -59,7 +59,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		Vector2{ player.pos.x, player.pos.y },
 		Vector2{ 10.0f,3.0f },
 		0.0f,
-		WHITE,
+		RED,
 		rand() % ((100 + 50 + 1) + 50),
 		10,
 		150,
@@ -67,14 +67,14 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	);
 
 	SpecialWeapon hammer;
-	gun.Initialize(
+	hammer.Initialize(
 		Vector2{ player.pos.x, player.pos.y },
 		Vector2{ 10.0f,3.0f },
 		0.0f,
-		WHITE,
-		300,
-		300,
-		300,
+		GREEN,
+		200,
+		200,
+		200,
 		false
 	);
 
@@ -96,17 +96,17 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 		if (player.currentWeapon == Player::weaponType::SWORD) {
 			//剣の更新処理
-			sword.Update();
+			sword.Update(player);
 
 		}
 		else if (player.currentWeapon == Player::weaponType::GUN) {
 			//銃の更新処理
-			gun.Update();
+			gun.Update(player);
 
 		}
 		else if (player.currentWeapon == Player::weaponType::SPECIAL_ITEM) {
 			//特殊アイテムの更新処理
-			hammer.Update();
+			hammer.Update(player);
 		}
 
 		///
