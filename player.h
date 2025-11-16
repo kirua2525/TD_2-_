@@ -9,6 +9,8 @@
 #include "gun.h"
 #include "specialWeapon.h"
 
+class Vector2F;
+
 class Player {
 public:
 
@@ -18,16 +20,18 @@ public:
 		SPECIAL_ITEM = 3
 	};
 
-	Vector2 pos;
-	Vector2 velocity;
-	Vector2 size;
-	Vector2 radius;
+	Vector2F pos;
+	Vector2F velocity;
+	Vector2F size;
+	Vector2F radius;
 	float angle;
 	unsigned int color;
 	float hp;
 	float maxHp;
 	float minHp;
 	//int texture;
+	//int leftTexture;
+	//int rightTexture;
 	float jumpSpeed;
 	bool isAlive; 
 	bool isVisible; 
@@ -44,13 +48,15 @@ public:
 
 public:
 	void Initialize(
-		Vector2 pos,
-		Vector2 velocity,
-		Vector2 size,
-		Vector2 playerRadius,
+		Vector2F pos,
+		Vector2F velocity,
+		Vector2F size,
+		Vector2F playerRadius,
 		float angle,
 		unsigned int playerColor,
-		//int textureHandle
+		//int texture,
+		//int leftTextureHandle,
+		//int rightTextureHandle
 		float jumpSpeed,
 		bool alive,	
 		bool visible,

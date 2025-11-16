@@ -4,8 +4,8 @@
 
 
 void Sword::Initialize(
-	Vector2 swordPos,
-	Vector2 swordSize,
+	Vector2F swordPos,
+	Vector2F swordSize,
 	float swordAngle,
 	float swordAngleRotate,
 	int swordColor,
@@ -36,6 +36,7 @@ void Sword::Damage() {
 void Sword::Update(Player player) {
 	this->pos.x = player.pos.x + player.radius.x;
 	this->pos.y = player.pos.y + player.radius.y;
+	this->angle += this->angleRotate;
 }
 
 void Sword::Draw() {

@@ -11,32 +11,34 @@ class Player;
 
 class SpecialWeapon {
 public:
-	Vector2 pos;
-	Vector2 size;
-	float angle;
-	int color;
-	//int texture;
-	int damage;
-	int minDamage;
-	int maxDamage;
-	bool isHit;
+    Vector2F pos;
+    Vector2F size;
+    float angle;
+    float angleRotate;
+    float coolTime;
+    float defaultCoolTime; 
+    int color;
+    int damage;
+    int minDamage;
+    int maxDamage;
+    bool isHit;
 
 public:
-	void Initialize(
-		Vector2 pos,
-		Vector2 size,
-		float angle,
-		int color,
-		//int texture,
-		int damage,
-		int minDamage,
-		int maxDamage,
-		bool isHit
-	);
+    void Initialize(
+        Vector2F pos,
+        Vector2F size,
+        float angle,
+        float angleRotate,
+        float coolTime,
+        int color,
+        int damage,
+        int minDamage,
+        int maxDamage,
+        bool isHit
+    );
 
-public:
-	void Damage();
-	void Update(Player player);
-	void Draw();
-
+    void ReSetCoolTime();     
+    void Damage(Player& player);
+    void Update(Player player);
+    void Draw();
 };

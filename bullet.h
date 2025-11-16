@@ -5,6 +5,7 @@
 #include <time.h>
 
 #include "Vector2.h"
+#include "mouse.h"
 #include "gun.h"
 
 class Gun;
@@ -12,14 +13,18 @@ class Gun;
 class Bullet {
 public:
 
-	Vector2 pos;
-	Vector2 size;
+	Vector2F pos;
+	Vector2F size;
+	Vector2F speed;
+	float angle;
+	int color;
+	//int texture;
 	bool isHit;
 
 public:
 
 	void Initialize();
-	void Update();
+	void Update(Gun gun);
 	void Draw();
 
 };

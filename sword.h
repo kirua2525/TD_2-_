@@ -11,8 +11,8 @@ class Player;
 
 class Sword {
 public:
-	Vector2 pos;
-	Vector2 size;
+	Vector2F pos;
+	Vector2F size;
 	float angle;
 	float angleRotate;
 	int color;
@@ -24,8 +24,8 @@ public:
 
 public:
 	void Initialize(
-		Vector2 pos,
-		Vector2 size,
+		Vector2F pos,
+		Vector2F size,
 		float angle,
 		float rotate,
 		int color,

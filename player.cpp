@@ -2,13 +2,15 @@
 
 //Constructor
 void Player::Initialize(
-	Vector2 playerPos,
-	Vector2 playerVelocity,
-	Vector2 playerSize,
-	Vector2 playerRadius,
+	Vector2F playerPos,
+	Vector2F playerVelocity,
+	Vector2F playerSize,
+	Vector2F playerRadius,
 	float playerAngle,
 	unsigned int playerColor,
-	//int textureHandle
+	//int playerTexture,
+	//int playerleftTexture,
+	//int playerrightTexture,
 	float playerJumpSpeed,
 	bool playerAlive,
 	bool playerVisible,
@@ -26,7 +28,9 @@ void Player::Initialize(
 	this->radius = playerRadius;
 	this->angle = playerAngle;
 	this->color = playerColor;
-	//this->texture = textureHandle;
+	//this->texture = playerTexture;
+	//this->leftTexture = playerleftTextureHandle;
+	//this->rightTexture = playerrightTextureHandle;
 	this->jumpSpeed = playerJumpSpeed;
 	this->isAlive = playerAlive;
 	this->isVisible = playerVisible;
@@ -47,10 +51,12 @@ void Player::Update(const char* keys, const char* prekeys) {
 	//left
 	if(keys[DIK_A]||keys[DIK_LEFT]) {
 		this->pos.x -= this->velocity.x;
+		//this->texture = this->leftTexture;
 	}
 	//right
 	if(keys[DIK_D]||keys[DIK_RIGHT]) {
 		this->pos.x += this->velocity.x;
+		//this->texture = this->rightTexture;
 	}
 
 	if (this->pos.x <= 0) {
@@ -64,7 +70,7 @@ void Player::Update(const char* keys, const char* prekeys) {
 
 	//jump
 	if (this->isOnGround) {
-		if (wPressed || upPressed || spacePressed) {
+		if (wPressed || upPressed) {
 		this->velocity.y = -this->jumpSpeed;
 		this->isOnGround = false;
 	}
@@ -96,20 +102,20 @@ void Player::Update(const char* keys, const char* prekeys) {
 	//Processing for each weapon
 	switch (this->currentWeapon) {
 	case SWORD:
-		if (!prekeys[DIK_SPACE] && keys[DIK_SPACE]) {
-			this->isAttackSword = true;
+		if (this->spacePressed) {
+			//boss
 		}
 		break;
 
 	case GUN:
-		if (!prekeys[DIK_SPACE] && keys[DIK_SPACE]) {
-			this->isAttackGun = true;
+		if (this->spacePressed) {
+			//boss
 		};
 		break;
 
 	case SPECIAL_ITEM:
-		if (!prekeys[DIK_SPACE] && keys[DIK_SPACE]) {
-			this->isAttackSpecialItem = true;
+		if (this->spacePressed) {
+			//boss
 		}
 		break;
 	}
@@ -164,12 +170,12 @@ void Player::SetWeapon(weaponType newWeapon) {
 }
 
 void Player::resetStatus() {
-	this->pos = Vector2{ 100.0f, 600.0f };
+	this->pos = Vector2F{ 100.0f, 600.0f };
 	this->hp = this->maxHp;
 	this->isAlive = true;
 	this->isVisible = true;
 	this->isjumping = false;
 	this->isMoving = false;
 	this->isOnGround = true;
-	this->velocity = Vector2{0.0f, 0.0f};
+	this->velocity = Vector2F{0.0f, 0.0f};
 }

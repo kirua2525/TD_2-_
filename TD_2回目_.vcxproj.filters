@@ -38,6 +38,9 @@
     <ClCompile Include="bullet.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
+    <ClCompile Include="mouse.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -127,5 +130,6 @@
     <ClInclude Include="specialWeapon.h" />
     <ClInclude Include="sword.h" />
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="mouse.h" />
   </ItemGroup>
 </Project>

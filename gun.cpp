@@ -1,12 +1,15 @@
 #include "player.h"
+#include "mouse.h"
 #include "gun.h"
 
 void Gun::Initialize(
-	Vector2 gunPos,
-	Vector2 gunSize,
+	Vector2F gunPos,
+	Vector2F gunSize,
 	float gunAngle,
 	int gunColor,
 	//int gunTexture,
+	//int gunLeftTexture,
+	//int gunRightTexture,
 	int gunDamage,
 	int gunMinDamage,
 	int gunMaxDamage,
@@ -17,6 +20,8 @@ void Gun::Initialize(
 	this->angle = gunAngle;
 	this->color = gunColor;
 	//this->texture = gunTexture;
+	//this->texture = gunLeftTexture;
+	//this->texture = gunRightTexture;
 	this->damage = gunDamage;
 	this->maxDamage = gunMaxDamage;
 	this->minDamage = gunMinDamage;
@@ -29,10 +34,28 @@ void Gun::Damage() {
 	}
 }
 
-void Gun::Update(Player player) {
+void Gun::Update(Player player, Mouse mouse) {
+
 	this->pos.x = player.pos.x + player.radius.x;
 	this->pos.y = player.pos.y + player.radius.y;
+	//if(player.texture = player.leftTexture){
+	//this->texture = this->leftTexture;
+	//}else if(player.texture = player.rightTexture){
+	//this->texture = this->rightTexture;
+	//}
 
+	Novice::GetMousePosition(&mouse.pos.x, &mouse.pos.y);
+
+	float dx = mouse.pos.x - this->pos.x;
+	float dy = mouse.pos.y - this->pos.y;
+
+	this->angle = atan2f(dy, dx);
+
+	//if (player.texture = player.leftTexture) {
+	//	 mouse.pos.x <= player.pos.x;
+	//}else if (player.texture = player.rightTexture) {
+	//	 mouse.pos.x >= player.pos.x;
+	//}
 }
 
 void Gun::Draw() {

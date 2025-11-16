@@ -164,6 +164,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
     <ClCompile Include="gun.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mouse.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="specialWeapon.cpp" />
     <ClCompile Include="sword.cpp" />
@@ -199,6 +200,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\DirectXGame\scene\GameScene.h" />
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
     <ClInclude Include="gun.h" />
+    <ClInclude Include="mouse.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="specialWeapon.h" />
     <ClInclude Include="sword.h" />
