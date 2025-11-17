@@ -45,7 +45,7 @@ void Bullet::Update(Gun gun,Mouse mouse) {
 	}
 
 	// Check boundaries
-	if (this->pos.x <= 0.0f || this->pos.x >= 800.0f || // Assuming screen width = 800
+	if (this->pos.x <= 0.0f || this->pos.x >= 1280.0f || // Assuming screen width = 1280
 		this->pos.y <= 0.0f || this->pos.y >= 600.0f) { // Assuming screen height = 600
 		gun.isShot = false;
 		this->isHit = false;

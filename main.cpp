@@ -168,6 +168,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 		//debug
 		player.debugDraw();
+		Novice::ScreenPrintf(0,180, "isShot: %s", gun.isShot ? "true" : "false");
 
 		///
 		/// ↑描画処理ここまで
