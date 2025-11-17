@@ -5,6 +5,7 @@
 void Gun::Initialize(
 	Vector2F gunPos,
 	Vector2F gunSize,
+	Vector2F gunRadius,
 	float gunAngle,
 	int gunColor,
 	//int gunTexture,
@@ -17,6 +18,7 @@ void Gun::Initialize(
 ){ 
 	this->pos = gunPos;
 	this->size = gunSize;
+	this->radius = gunRadius;
 	this->angle = gunAngle;
 	this->color = gunColor;
 	//this->texture = gunTexture;
@@ -27,6 +29,8 @@ void Gun::Initialize(
 	this->minDamage = gunMinDamage;
 	this->isShot = gunIsShot;
 }
+
+Gun::~Gun(){}
 
 void Gun::Damage() {
 	if (this->isShot) {

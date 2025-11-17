@@ -6,6 +6,7 @@
 void Sword::Initialize(
 	Vector2F swordPos,
 	Vector2F swordSize,
+	Vector2F swordRadius,
 	float swordAngle,
 	float swordAngleRotate,
 	int swordColor,
@@ -17,6 +18,7 @@ void Sword::Initialize(
 ) {
 	this->pos = swordPos;
 	this->size = swordSize;
+	this->radius = swordRadius;
 	this->angle = swordAngle;
 	this->angleRotate = swordAngleRotate;
 	this->color = swordColor;
@@ -26,6 +28,8 @@ void Sword::Initialize(
 	this->minDamage = swordMinDamage;
 	this->isHit = swordIsHit;
 }
+
+Sword::~Sword() {}
 
 void Sword::Damage() {
 	if (this->isHit) {

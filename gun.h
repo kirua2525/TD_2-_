@@ -17,6 +17,7 @@ class Gun {
 public:
 	Vector2F pos;
 	Vector2F size;
+	Vector2F radius;
 	float angle;
 	int color;
 	//int texture;
@@ -26,11 +27,14 @@ public:
 	int minDamage;
 	int maxDamage;
 	bool isShot;
+
+	~Gun();
 	
 public:
 	void Initialize(
 		Vector2F pos,
 		Vector2F size,
+		Vector2F radius,
 		float angle,
 		int color,
 		//int texture,

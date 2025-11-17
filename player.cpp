@@ -43,6 +43,8 @@ void Player::Initialize(
 	this->currentWeapon = playerCurrentWeapon;
 }
 
+Player::~Player(){}
+
 void Player::Gravity() {
 	this->velocity.y += 0.5f; // Gravity
 }
@@ -68,9 +70,10 @@ void Player::Update(const char* keys, const char* prekeys) {
 	this->upPressed = (!prekeys[DIK_UP] && keys[DIK_UP]);
 	this->spacePressed = (!prekeys[DIK_SPACE] && keys[DIK_SPACE]);
 
+
 	//jump
 	if (this->isOnGround) {
-		if (wPressed || upPressed) {
+		if (wPressed || upPressed||spacePressed) {
 		this->velocity.y = -this->jumpSpeed;
 		this->isOnGround = false;
 	}
@@ -102,19 +105,19 @@ void Player::Update(const char* keys, const char* prekeys) {
 	//Processing for each weapon
 	switch (this->currentWeapon) {
 	case SWORD:
-		if (this->spacePressed) {
+		if (this->isAttackSword) {
 			//boss
 		}
 		break;
 
 	case GUN:
-		if (this->spacePressed) {
+		if (this->isAttackGun) {
 			//boss
 		};
 		break;
 
 	case SPECIAL_ITEM:
-		if (this->spacePressed) {
+		if (this->isAttackSpecialItem) {
 			//boss
 		}
 		break;

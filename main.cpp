@@ -6,6 +6,7 @@
 #include "player.h"
 #include "sword.h"
 #include "gun.h"
+#include "bullet.h"
 #include "specialWeapon.h"
 
 const char kWindowTitle[] = "LC1D_21_ナガタ_キルア_(確認課題)";
@@ -23,6 +24,12 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	srand((unsigned int)time(nullptr));
 
 	Mouse mouse;
+	mouse.Initialize(
+		Vector2F{ 20.0f,20.0f },
+		Vector2F{ 10.0f,10.0f },
+		0.0f,
+		0x747400FF
+	);
 
 	Player player;
     player.Initialize(
@@ -31,7 +38,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
         Vector2F{50.0f, 50.0f},   // size
         Vector2F{25.0f, 25.0f},   // playerRadius
         0.0f,                     // angle
-        0x000000FF,               // enemyColor
+        0x00000055,               // enemyColor
         //textureHandle
         15.0f,                    // jumpSpeed
         true,                     // alive
@@ -49,6 +56,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	sword.Initialize(
 		Vector2F{ player.pos.x, player.pos.y },
 		Vector2F{ 50.0f,3.0f },
+		Vector2F{ 50.0f,3.0f },
 		0.0f,
 		0.2f,
 		WHITE,
@@ -62,6 +70,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	gun.Initialize(
 		Vector2F{ player.pos.x, player.pos.y },
 		Vector2F{ 10.0f,3.0f },
+		Vector2F{ 10.0f,3.0f },
 		0.0f,
 		RED,
 		rand() % ((100 + 50 + 1) + 50),
@@ -70,10 +79,22 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		false
 	);
 
+	Bullet bullet;
+	bullet.Initialize(
+		Vector2F{ gun.pos.x, gun.pos.y },
+		Vector2F{ 2.0f,2.0f },
+		Vector2F{1.0f,1.0f},
+		Vector2F{ 2.0f,2.0f },
+		gun.angle,
+		RED,
+		false
+	);
+
 	SpecialWeapon hammer;
 	hammer.Initialize(
 		Vector2F{ player.pos.x, player.pos.y },
-		Vector2F{ 10.0f,3.0f },
+		Vector2F{ 90.0f,9.0f },
+		Vector2F{ 90.0f,9.0f },
 		0.0f,
 		0.2f,
 		300.0f,
@@ -110,6 +131,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		else if (player.currentWeapon == Player::weaponType::GUN) {
 			//銃の更新処理
 			gun.Update(player,mouse);
+			mouse.Update(gun);
 
 		}
 		else if (player.currentWeapon == Player::weaponType::SPECIAL_ITEM) {
@@ -136,6 +158,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		else if (player.currentWeapon == Player::weaponType::GUN) {
 			//銃の描画
 			gun.Draw();
+			mouse.Draw();
 
 		}
 		else if (player.currentWeapon == Player::weaponType::SPECIAL_ITEM) {

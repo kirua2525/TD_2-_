@@ -13,6 +13,7 @@ class SpecialWeapon {
 public:
     Vector2F pos;
     Vector2F size;
+    Vector2F radius;
     float angle;
     float angleRotate;
     float coolTime;
@@ -23,10 +24,13 @@ public:
     int maxDamage;
     bool isHit;
 
+    ~SpecialWeapon();
+
 public:
     void Initialize(
         Vector2F pos,
         Vector2F size,
+        Vector2F radius,
         float angle,
         float angleRotate,
         float coolTime,
@@ -38,7 +42,7 @@ public:
     );
 
     void ReSetCoolTime();     
-    void Damage(Player& player);
+    void Damage(Player player);
     void Update(Player player);
     void Draw();
 };

@@ -13,6 +13,7 @@ class Sword {
 public:
 	Vector2F pos;
 	Vector2F size;
+	Vector2F radius;
 	float angle;
 	float angleRotate;
 	int color;
@@ -22,10 +23,13 @@ public:
 	int maxDamage;
 	bool isHit;
 
+	~Sword();
+
 public:
 	void Initialize(
 		Vector2F pos,
 		Vector2F size,
+		Vector2F radius,
 		float angle,
 		float rotate,
 		int color,

@@ -3,6 +3,7 @@
 void SpecialWeapon::Initialize(
     Vector2F specialWeaponPos,
     Vector2F specialWeaponSize,
+    Vector2F specialWeaponRadius,
     float specialWeaponAngle,
     float specialWeaponAngleRotate,
     float specialWeaponCoolTime,
@@ -14,6 +15,7 @@ void SpecialWeapon::Initialize(
 ) {
     this->pos = specialWeaponPos;
     this->size = specialWeaponSize;
+    this->radius = specialWeaponRadius;
     this->angle = specialWeaponAngle;
     this->angleRotate = specialWeaponAngleRotate;
 
@@ -27,11 +29,13 @@ void SpecialWeapon::Initialize(
     this->isHit = specialWeaponIsHit;
 }
 
+SpecialWeapon::~SpecialWeapon(){}
+
 void SpecialWeapon::ReSetCoolTime() {
     this->coolTime = this->defaultCoolTime;
 }
 
-void SpecialWeapon::Damage(Player& player) {
+void SpecialWeapon::Damage(Player player) {
     if (this->isHit) {
 
         player.currentWeapon = Player::weaponType::SWORD;

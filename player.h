@@ -46,6 +46,8 @@ public:
 	bool spacePressed;
 	weaponType currentWeapon;
 
+	~Player();
+
 public:
 	void Initialize(
 		Vector2F pos,
