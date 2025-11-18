@@ -18,11 +18,13 @@ public:
     float angleRotate;
     float coolTime;
     float defaultCoolTime; 
+    float rotationDirection;
     int color;
     int damage;
     int minDamage;
     int maxDamage;
     bool isHit;
+    bool isClockwise = true;
 
     ~SpecialWeapon();
 
@@ -43,6 +45,6 @@ public:
 
     void ReSetCoolTime();     
     void Damage(Player player);
-    void Update(Player player);
+    void Update(const Player& player, const char* keys);
     void Draw();
 };

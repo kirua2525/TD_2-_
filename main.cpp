@@ -69,7 +69,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	Gun gun;
 	gun.Initialize(
 		Vector2F{ player.pos.x, player.pos.y },
-		Vector2F{ 10.0f,3.0f },
+		Vector2F{ 10.0f,5.0f },
 		Vector2F{ 10.0f,3.0f },
 		0.0f,
 		RED,
@@ -81,11 +81,13 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 	Bullet bullet;
 	bullet.Initialize(
-		Vector2F{ gun.pos.x, gun.pos.y },
-		Vector2F{ 2.0f,2.0f },
-		Vector2F{1.0f,1.0f},
-		Vector2F{ 2.0f,2.0f },
+		Vector2F{ player.pos.x, player.pos.y },
+		Vector2F{ 10.0f,10.0f },
+		Vector2F{ 7.0f,7.0f },
+		Vector2F{ 5.0f,5.0f },
+		Vector2F{ 0.0f,0.0f },
 		gun.angle,
+		10.0f,
 		RED,
 		false
 	);
@@ -125,18 +127,19 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 		if (player.currentWeapon == Player::weaponType::SWORD) {
 			//剣の更新処理
-			sword.Update(player);
+			sword.Update(player,keys);
 
 		}
 		else if (player.currentWeapon == Player::weaponType::GUN) {
 			//銃の更新処理
 			gun.Update(player,mouse);
 			mouse.Update(gun);
+			bullet.Update(gun, mouse,player);
 
 		}
 		else if (player.currentWeapon == Player::weaponType::SPECIAL_ITEM) {
 			//特殊アイテムの更新処理
-			hammer.Update(player);
+			hammer.Update(player,keys);
 		}
 
 		///
@@ -159,6 +162,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 			//銃の描画
 			gun.Draw();
 			mouse.Draw();
+			bullet.Draw(gun);
 
 		}
 		else if (player.currentWeapon == Player::weaponType::SPECIAL_ITEM) {

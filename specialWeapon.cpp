@@ -50,13 +50,28 @@ void SpecialWeapon::Damage(Player player) {
     }
 }
 
-void SpecialWeapon::Update(Player player) {
+// float rotationDirection = 1.0f; // 1: clockwise, -1: counter-clockwise
+void SpecialWeapon::Update(const Player& player, const char* keys) {
 
     this->pos.x = player.pos.x + player.radius.x;
     this->pos.y = player.pos.y + player.radius.y;
 
-    this->angle += this->angleRotate;
+    if (keys[DIK_A]) {
+        isClockwise = false; 
+    }
+    if (keys[DIK_D]) {
+        isClockwise = true;
+    }
+
+    if (isClockwise) {
+        this->angle += this->angleRotate;
+    }
+    else {
+        this->angle -= this->angleRotate;
+    }
 }
+
+
 
 void SpecialWeapon::Draw() {
     Novice::DrawBox(

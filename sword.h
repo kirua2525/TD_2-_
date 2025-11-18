@@ -16,12 +16,14 @@ public:
 	Vector2F radius;
 	float angle;
 	float angleRotate;
+	float rotationDirection;
 	int color;
 	int texture;
 	int damage;
 	int minDamage;
 	int maxDamage;
 	bool isHit;
+	bool isClockwise = true;
 
 	~Sword();
 
@@ -42,7 +44,7 @@ public:
 
 public:
 	void Damage();
-	void Update(Player player);
+	void Update(Player player,const char* keys);
 	void Draw();
 
 };

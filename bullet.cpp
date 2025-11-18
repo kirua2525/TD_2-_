@@ -8,7 +8,9 @@ void Bullet::Initialize(
 	Vector2F bulletSize,
 	Vector2F bulletSpeed,
 	Vector2F bulletRadius,
+	Vector2F bulletvel,
 	float bulletAngle,
+	float bulletdamage,
 	int bulletColor,
 	//int bulletTexture,
 	bool bulletIsHit
@@ -17,7 +19,9 @@ void Bullet::Initialize(
 	this->size = bulletSize;
 	this->speed = bulletSpeed;
 	this->radius = bulletRadius;
+	this->vel = bulletvel;
 	this->angle = bulletAngle;
+	this->damage = bulletdamage;
 	this->color = bulletColor;
 	//this->texture = bulletTexture;
 	this->isHit = bulletIsHit;
@@ -25,31 +29,48 @@ void Bullet::Initialize(
 
 Bullet::~Bullet(){}
 
-void Bullet::Update(Gun gun,Mouse mouse) {
-	if (gun.isShot) {
-		// Compute direction vector from bullet to mouse
-		Vector2F direction;
-		direction.x = mouse.pos.x - this->pos.x;
-		direction.y = mouse.pos.y - this->pos.y;
+void Bullet::Update(Gun& gun, Mouse& mouse, Player& player) {
+    if (gun.isShot) {
 
-		// Normalize the vector
-		float length = sqrtf(direction.x * direction.x + direction.y * direction.y);
-		if (length != 0.0f) {
-			direction.x /= length;
-			direction.y /= length;
-		}
+        // Initialize bullet position at player center (once per shot)
+        if (!this->isHit) {
+            this->pos.x = player.pos.x + player.radius.x;
+            this->pos.y = player.pos.y + player.radius.y;
 
-		// Move bullet toward mouse
-		this->pos.x += direction.x * this->speed.x;
-		this->pos.y += direction.y * this->speed.y;
-	}
+            // Compute direction
+            Vector2F dir;
+            dir.x = mouse.pos.x - this->pos.x;
+            dir.y = mouse.pos.y - this->pos.y;
 
-	// Check boundaries
-	if (this->pos.x <= 0.0f || this->pos.x >= 1280.0f || // Assuming screen width = 1280
-		this->pos.y <= 0.0f || this->pos.y >= 600.0f) { // Assuming screen height = 600
-		gun.isShot = false;
-		this->isHit = false;
-	}
+            float len = sqrtf(dir.x * dir.x + dir.y * dir.y);
+            if (len != 0.0f) {
+                dir.x /= len;
+                dir.y /= len;
+            }
+
+            // Store velocity
+            this->vel.x = dir.x * this->speed.x;
+            this->vel.y = dir.y * this->speed.y;
+            this->isHit = true;
+        }
+
+        // Move bullet
+        this->pos.x += this->vel.x;
+        this->pos.y += this->vel.y;
+    }
+
+    // Check boundaries (1280 x 720)
+    if (this->pos.x < 0.0f || this->pos.x > 1280.0f ||
+        this->pos.y < 0.0f || this->pos.y > 720.0f) {
+        gun.isShot = false;
+        this->isHit = false;
+        this->pos.x = player.pos.x + player.radius.x;
+        this->pos.y = player.pos.y + player.radius.y;
+    }
+
+    if (!gun.isShot) {
+        this->isHit = false;
+    }
 }
 
 void Bullet::Draw(Gun gun) {

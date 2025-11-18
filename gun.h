@@ -45,7 +45,6 @@ public:
 		int maxDamage,
 		bool isShot
 	);
-	void Damage(Bullet bullet,Mouse mouse);
 	void Update(Player player, Mouse mouse);
 	void Draw();
 

@@ -32,30 +32,6 @@ void Gun::Initialize(
 
 Gun::~Gun(){}
 
-void Gun::Damage(Bullet bullet,Mouse mouse) {
-
-	if (Novice::IsPressMouse(0)) {
-		this->isShot = true;
-	}
-
-	if (this->isShot) {
-		Vector2F direction;
-		direction.x = mouse.pos.x - bullet.pos.x;
-		direction.y = mouse.pos.y - bullet.pos.y;
-
-		// Normalize the vector
-		float length = sqrtf(direction.x * direction.x + direction.y * direction.y);
-		if (length != 0.0f) {
-			direction.x /= length;
-			direction.y /= length;
-		}
-
-		// Move bullet toward mouse
-		this->pos.x += direction.x * bullet.speed.x;
-		this->pos.y += direction.y * bullet.speed.y;
-	}
-}
-
 void Gun::Update(Player player, Mouse mouse) {
 
 	this->pos.x = player.pos.x + player.radius.x;
@@ -78,6 +54,14 @@ void Gun::Update(Player player, Mouse mouse) {
 	//}else if (player.texture = player.rightTexture) {
 	//	 mouse.pos.x >= player.pos.x;
 	//}
+
+	if (Novice::IsPressMouse(0)) {
+		this->isShot = true;
+	}
+	if (player.currentWeapon != Player::weaponType::GUN) {
+		this->isShot = false;
+	}
+
 }
 
 void Gun::Draw() {

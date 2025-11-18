@@ -5,6 +5,7 @@
 #include <time.h>
 
 #include "Vector2.h"
+#include "player.h"
 #include "mouse.h"
 #include "gun.h"
 
@@ -18,7 +19,9 @@ public:
 	Vector2F size;
 	Vector2F radius;
 	Vector2F speed;
+	Vector2F vel;
 	float angle;
+	float damage;
 	int color;
 	//int texture;
 	bool isHit;
@@ -32,12 +35,14 @@ public:
 		Vector2F size,
 		Vector2F speed,
 		Vector2F radius,
+		Vector2F vel,
 		float angle,
+		float damage,
 		int color,
 		//int texture,
 		bool isHit
 	);
-	void Update(Gun gun,Mouse mouse);
+	void Update(Gun& gun,Mouse& mouse,Player& player);
 	void Draw(Gun gun);
 
 };

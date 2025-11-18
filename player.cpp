@@ -46,7 +46,11 @@ void Player::Initialize(
 Player::~Player(){}
 
 void Player::Gravity() {
-	this->velocity.y += 0.5f; // Gravity
+	if (this->currentWeapon == Player::weaponType::SPECIAL_ITEM) {
+		this->velocity.y += 0.7f;
+	}else {
+		this->velocity.y += 0.5f; // Gravity
+	}
 }
 
 void Player::Update(const char* keys, const char* prekeys) {
