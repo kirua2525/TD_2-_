@@ -5,12 +5,14 @@
 #include <time.h>
 
 #include "Vector2.h"
+#include "scroll.h"
 #include "player.h"
 #include "mouse.h"
 #include "gun.h"
 
 class Gun;
 class Mouse;
+class Scroll;
 
 class Bullet {
 public:
@@ -43,6 +45,6 @@ public:
 		bool isHit
 	);
 	void Update(Gun& gun,Mouse& mouse,Player& player);
-	void Draw(Gun gun);
+	void Draw(Gun gun, Scroll scroll);
 
 };

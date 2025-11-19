@@ -41,6 +41,7 @@ void Sword::Update(Player player, const char* keys) {
 
 	this->pos.x = player.pos.x + player.radius.x;
 	this->pos.y = player.pos.y + player.radius.y;
+	this->pos.y = this->pos.y += this->radius.y / 2;
 
 	if (keys[DIK_A]) {
 		isClockwise = false;
@@ -58,9 +59,9 @@ void Sword::Update(Player player, const char* keys) {
 }
 
 
-void Sword::Draw() {
+void Sword::Draw(Scroll scroll) {
 	Novice::DrawBox(
-		(int)this->pos.x,
+		static_cast<int>(this->pos.x - scroll.scrollX),
 		(int)this->pos.y,
 		(int)this->size.x,
 		(int)this->size.y,

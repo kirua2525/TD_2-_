@@ -20,6 +20,8 @@ void Player::Initialize(
 	bool playerWPressed,
 	bool playerUpPressed,
 	bool playerSpacePressed,
+	bool playerMoveRight,
+	bool playerMoveLeft,
 	weaponType playerCurrentWeapon
 ) {
 	this->pos = playerPos;
@@ -40,6 +42,8 @@ void Player::Initialize(
 	this->wPressed = playerWPressed;
 	this->upPressed = playerUpPressed;
 	this->spacePressed = playerSpacePressed;
+	this->moveRight = playerMoveRight;
+	this->moveLeft = playerMoveLeft;
 	this->currentWeapon = playerCurrentWeapon;
 }
 
@@ -68,6 +72,9 @@ void Player::Update(const char* keys, const char* prekeys) {
 	if (this->pos.x <= 0) {
 		this->pos.x = 0;
 	}
+
+	this->moveRight = keys[DIK_D] != false;
+	this->moveLeft = keys[DIK_A] != false;
 	
 	//if Previous frame = false && if current frame = true && isOnGrund = true
 	this->wPressed = (!prekeys[DIK_W] && keys[DIK_W]);
@@ -128,9 +135,9 @@ void Player::Update(const char* keys, const char* prekeys) {
 	}
 }
 
-void Player::Draw() {
+void Player::Draw(Scroll scroll) {
 	Novice::DrawBox(
-		(int)this->pos.x,
+		static_cast<int>(this->pos.x - scroll.scrollX),
 		(int)this->pos.y,
 		(int)this->size.x,
 		(int)this->size.y,

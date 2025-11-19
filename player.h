@@ -5,11 +5,13 @@
 #include <time.h>
 
 #include "Vector2.h"
+#include "scroll.h"
 #include "sword.h"
 #include "gun.h"
 #include "specialWeapon.h"
 
 class Vector2F;
+class Scroll;
 
 class Player {
 public:
@@ -44,6 +46,8 @@ public:
 	bool wPressed;
 	bool upPressed;
 	bool spacePressed;
+	bool moveRight;
+	bool moveLeft;
 	weaponType currentWeapon;
 
 	~Player();
@@ -68,13 +72,15 @@ public:
 		bool wPressed,
 		bool upPressed,
 		bool spacepressed,
+		bool moveRight,
+		bool moveLeft,
 		weaponType currentWeapon
 	);
 	void Gravity();
 
 	void Update(const char* keys, const char* prekeys);
 
-	void Draw();
+	void Draw(Scroll scroll);
 
 	void debugDraw();
 

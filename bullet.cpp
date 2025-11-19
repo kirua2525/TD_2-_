@@ -73,10 +73,10 @@ void Bullet::Update(Gun& gun, Mouse& mouse, Player& player) {
     }
 }
 
-void Bullet::Draw(Gun gun) {
+void Bullet::Draw(Gun gun, Scroll scroll) {
 	if (gun.isShot) {
 		Novice::DrawBox(
-			(int)this->pos.x,
+            static_cast<int>(this->pos.x - scroll.scrollX),
 			(int)this->pos.y,
 			(int)this->size.x,
 			(int)this->size.y,

@@ -36,6 +36,7 @@ void Gun::Update(Player player, Mouse mouse) {
 
 	this->pos.x = player.pos.x + player.radius.x;
 	this->pos.y = player.pos.y + player.radius.y;
+	this->pos.y = this->pos.y += this->radius.y / 2;
 	//if(player.texture = player.leftTexture){
 	//this->texture = this->leftTexture;
 	//}else if(player.texture = player.rightTexture){
@@ -64,9 +65,9 @@ void Gun::Update(Player player, Mouse mouse) {
 
 }
 
-void Gun::Draw() {
+void Gun::Draw(Scroll scroll) {
 	Novice::DrawBox(
-		(int)this->pos.x,
+		static_cast<int>(this->pos.x - scroll.scrollX),
 		(int)this->pos.y,
 		(int)this->size.x,
 		(int)this->size.y,

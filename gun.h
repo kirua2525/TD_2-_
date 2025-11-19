@@ -5,6 +5,7 @@
 #include <time.h>
 
 #include "Vector2.h"
+#include "scroll.h"
 #include "mouse.h"
 #include "player.h"
 #include "bullet.h"
@@ -12,6 +13,7 @@
 class Player;
 class Bullet;
 class Mouse;
+class Scroll;
 
 class Gun {
 public:
@@ -46,6 +48,6 @@ public:
 		bool isShot
 	);
 	void Update(Player player, Mouse mouse);
-	void Draw();
+	void Draw(Scroll scroll);
 
 };

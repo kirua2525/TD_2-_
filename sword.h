@@ -5,9 +5,11 @@
 #include <time.h>
 
 #include "Vector2.h"
+#include "scroll.h"
 #include "player.h"
 
 class Player;
+class Scroll;
 
 class Sword {
 public:
@@ -45,6 +47,6 @@ public:
 public:
 	void Damage();
 	void Update(Player player,const char* keys);
-	void Draw();
+	void Draw(Scroll scroll);
 
 };
