@@ -1,6 +1,36 @@
 #include <Novice.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+
+struct Vector2 {
+
+	float x = 0.0f;
+	float y = 0.0f;
+
+};
+
+//struct Player {
+//
+//	Vector2 center;
+//	float radius = 0.0f;
+//	float length = 0.0f;
+//
+//};
+
+struct Boss {
+
+	Vector2 center;
+	float radius = 0.0f;
+	float length = 0.0f;
+	float speed;
+
+};
+
+
 
 const char kWindowTitle[] = "LC1D_21_ナガタ_キルア_(確認課題)";
 
@@ -27,11 +57,25 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	Novice::Initialize(kWindowTitle, 1280, 720);
 
 	// キー入力結果を受け取る箱
-	char keys[256] = {0};
-	char preKeys[256] = {0};
+	char keys[256] = { 0 };
+	char preKeys[256] = { 0 };
 
 	GameScene gamescene = SCENE_TITLE;
 
+	/*Player player;*/
+
+	Boss boss;
+
+	//=======プレイヤーの宣言=========================
+	/*player.center.x = 20.0f;
+	player.center.y = 592.0f;
+	player.radius = 16.0f;
+
+	int NewPlayerPosX;
+	int NewPlayerPosY;
+
+	float beforePlayerPosX = player.center.x;
+	float beforePlayerPosY = player.center.y;*/
 
 	//プレイヤーステータス
 	//int playerHP = 200;
@@ -40,18 +84,47 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	//int gunAttack = 40;
 	//int hammerAttack = 60;
 
+	//================================================
+
+
+	//============ボスの宣言===========================
+	boss.center.x = 1000.0f;
+	boss.center.y = 508.0f;
+	boss.radius = 100.0f;	
+	boss.speed = 40;
+
+	//ボスのシェイク
+	int bossShake = 20;
+
+	//ボスのタイマー
+	int bossMoveTimer = 1600;
+	//int bossBulletTimer = 200;
+
+	int bossShapeTimer = 80;
+
+	//ボスのフラグ
+	//int isBossAlive = true;
+	int isBossTimer = true;
+
+	int isShape = false;
+	
+	//ボスのランダム
+	int bossRandX = rand() % bossShake - (bossShake / 2);
+	int bossRandY = rand() % bossShake - (bossShake / 2);
+
 	//ボスステータス
-	//int BossOneHP = 1000;
+	int BossOneHP = 1000;
 	//int BossTwoHP = 1000;
 	//int BossThree = 2000;
 
+	//=================================================
 
 
 	//ハンドル宣言
-int blockHandle;
+	int blockHandle;
 
 	//画像読み込み
-blockHandle = Novice::LoadTexture("./Resources/images/karieJimen.png");
+	blockHandle = Novice::LoadTexture("./Resources/images/karieJimen.png");
 
 	//マップチップの処理
 	int map[25][120] = {
@@ -143,7 +216,7 @@ blockHandle = Novice::LoadTexture("./Resources/images/karieJimen.png");
 			}
 
 			//銃を選んだ時のシーン切り替え
-			if (keys[DIK_2] && !preKeys[DIK_3])
+			if (keys[DIK_2] && !preKeys[DIK_2])
 			{
 
 
@@ -152,7 +225,7 @@ blockHandle = Novice::LoadTexture("./Resources/images/karieJimen.png");
 			}
 
 			//ハンマーを選んだ時のシーン切り替え
-			if (keys[DIK_SPACE] && !preKeys[DIK_SPACE])
+			if (keys[DIK_3] && !preKeys[DIK_3])
 			{
 
 
@@ -170,7 +243,7 @@ blockHandle = Novice::LoadTexture("./Resources/images/karieJimen.png");
 
 			//デバック表示
 			Novice::ScreenPrintf(10, 10, "SCENE_SELECT");
-
+			Novice::ScreenPrintf(640, 360, "Push to 1");
 
 			///
 			///↑描画処理ここまで
@@ -181,6 +254,122 @@ blockHandle = Novice::LoadTexture("./Resources/images/karieJimen.png");
 			///
 			/// ↓更新処理ここから
 			///
+
+			//===================プレイヤーの動き===============-
+
+			////Aキーが押されたとき
+			//if (keys[DIK_A]) {
+
+			//	player.center.x -= 20;
+
+			//}
+
+			////Dキーが押されたとき
+			//if (keys[DIK_D]) {
+
+			//	player.center.x += 20;
+
+			//}
+
+			//プレイヤーの攻撃処理
+			if (keys[DIK_RETURN] && !preKeys[DIK_RETURN]) {
+
+				BossOneHP -= 20;
+
+			}
+
+
+
+
+
+
+
+			////変換
+			//NewPlayerPosX = static_cast<int>(player.center.x / 32);
+			//NewPlayerPosY = static_cast<int>(player.center.y / 32);
+
+			////マップチップ当たり判定
+			//if (map[NewPlayerPosY][NewPlayerPosX] == 1) {
+
+			//	player.center.y = beforePlayerPosY;
+			//	player.center.x = beforePlayerPosX;
+
+			//}
+
+			//================================================================
+
+			
+			//==========ボスの動き================
+			if (isBossTimer) {
+
+				bossMoveTimer--;
+
+			} else {
+
+				bossMoveTimer = 1600;
+				isBossTimer = true;
+
+			}
+			
+			//タイマーが条件と同じになると左右に動く
+
+			if (bossMoveTimer == 1200) {
+			
+				boss.center.x -= 100.0f;
+
+			}
+
+			if (bossMoveTimer == 800) {
+
+				boss.center.x -= 100.0f;
+
+			}
+
+			if (bossMoveTimer == 400) {
+
+				boss.center.x += 100.0f;
+
+			}
+
+			if (bossMoveTimer == 0) {
+
+				boss.center.x += 100.0f;
+				isBossTimer = false;
+			
+			}
+
+			//ボス(1段階)のHPが0になった時
+			if (BossOneHP == 0) {
+
+				isShape = true;
+				isBossTimer = false;
+
+			}
+
+			//シェイクがtrueになった時
+			if (isShape) {
+
+				bossRandX = rand() % bossShake - (bossShake / 2);
+				bossRandY = rand() % bossShake - (bossShake / 2);
+
+				bossShapeTimer--;
+
+				if (bossShapeTimer <= 0) {
+
+					if (boss.center.x < 2280.0f) {
+
+						boss.center.x += boss.speed;
+
+						if (boss.center.x == 2280.0f) {
+							isShape = false;
+							bossShapeTimer = 80;
+						}
+					}
+				}
+			}
+
+			//=======================================================
+
 
 			///
 			/// ↑更新処理ここまで
@@ -207,11 +396,25 @@ blockHandle = Novice::LoadTexture("./Resources/images/karieJimen.png");
 				}
 			}
 
+			////プレイヤーの描画
+			//Novice::DrawEllipse(
+			//	static_cast<int>(player.center.x),
+			//	static_cast<int>(player.center.y),
+			//	static_cast<int>(player.radius),
+			//	static_cast<int>(player.radius),
+			//	0.0f, RED, kFillModeSolid);
 
-
+			//ボスの描画
+			Novice::DrawEllipse(
+				static_cast<int>(boss.center.x) + bossRandX,
+				static_cast<int>(boss.center.y) + bossRandY,
+				static_cast<int>(boss.radius),
+				static_cast<int>(boss.radius),
+				0.0f, WHITE, kFillModeSolid);
 
 			//デバックシーン表示
 			Novice::ScreenPrintf(10, 10, "SCENE_PLAY");
+			Novice::ScreenPrintf(30, 30, "BossHP %d", BossOneHP);
 
 
 			///
