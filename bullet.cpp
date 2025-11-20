@@ -39,8 +39,8 @@ void Bullet::Update(Gun& gun, Mouse& mouse, Player& player) {
 
             // Compute direction
             Vector2F dir;
-            dir.x = mouse.pos.x - this->pos.x;
-            dir.y = mouse.pos.y - this->pos.y;
+            dir.x = (mouse.pos.x + (int)mouse.radius.x) - this->pos.x;
+            dir.y = (mouse.pos.y + (int)mouse.radius.y) - this->pos.y;
 
             float len = sqrtf(dir.x * dir.x + dir.y * dir.y);
             if (len != 0.0f) {
@@ -73,10 +73,10 @@ void Bullet::Update(Gun& gun, Mouse& mouse, Player& player) {
     }
 }
 
-void Bullet::Draw(Gun gun, Scroll scroll) {
+void Bullet::Draw(Gun gun) {
 	if (gun.isShot) {
 		Novice::DrawBox(
-            static_cast<int>(this->pos.x - scroll.scrollX),
+            (int)this->pos.x,
 			(int)this->pos.y,
 			(int)this->size.x,
 			(int)this->size.y,

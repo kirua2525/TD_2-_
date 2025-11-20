@@ -59,12 +59,15 @@ void Player::Gravity() {
 
 void Player::Update(const char* keys, const char* prekeys) {
 	//left
-	if(keys[DIK_A]||keys[DIK_LEFT]) {
+
+	this->moveRight = keys[DIK_D] || keys[DIK_LEFT] != 0;
+	this->moveLeft = keys[DIK_A] || keys[DIK_LEFT] != 0;
+	if(this->moveLeft) {
 		this->pos.x -= this->velocity.x;
 		//this->texture = this->leftTexture;
 	}
 	//right
-	if(keys[DIK_D]||keys[DIK_RIGHT]) {
+	if(this->moveRight) {
 		this->pos.x += this->velocity.x;
 		//this->texture = this->rightTexture;
 	}
@@ -72,9 +75,6 @@ void Player::Update(const char* keys, const char* prekeys) {
 	if (this->pos.x <= 0) {
 		this->pos.x = 0;
 	}
-
-	this->moveRight = keys[DIK_D] != false;
-	this->moveLeft = keys[DIK_A] != false;
 	
 	//if Previous frame = false && if current frame = true && isOnGrund = true
 	this->wPressed = (!prekeys[DIK_W] && keys[DIK_W]);
@@ -135,9 +135,9 @@ void Player::Update(const char* keys, const char* prekeys) {
 	}
 }
 
-void Player::Draw(Scroll scroll) {
+void Player::Draw() {
 	Novice::DrawBox(
-		static_cast<int>(this->pos.x - scroll.scrollX),
+		(int)this->pos.x,
 		(int)this->pos.y,
 		(int)this->size.x,
 		(int)this->size.y,

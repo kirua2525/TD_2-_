@@ -65,9 +65,9 @@ void Gun::Update(Player player, Mouse mouse) {
 
 }
 
-void Gun::Draw(Scroll scroll) {
+void Gun::Draw() {
 	Novice::DrawBox(
-		static_cast<int>(this->pos.x - scroll.scrollX),
+		(int)this->pos.x,
 		(int)this->pos.y,
 		(int)this->size.x,
 		(int)this->size.y,

@@ -7,6 +7,7 @@
 
 class Vector2I;
 class Vector2F;
+class Scroll;
 class Gun;
 
 class Mouse {

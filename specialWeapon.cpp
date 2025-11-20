@@ -74,9 +74,9 @@ void SpecialWeapon::Update(const Player& player, const char* keys) {
 
 
 
-void SpecialWeapon::Draw(Scroll scroll) {
+void SpecialWeapon::Draw() {
     Novice::DrawBox(
-        static_cast<int>(this->pos.x - scroll.scrollX),
+        (int)this->pos.x,
         (int)this->pos.y,
         (int)this->size.x,
         (int)this->size.y,

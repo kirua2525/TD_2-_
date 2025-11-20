@@ -5,11 +5,9 @@
 #include <time.h>
 
 #include "Vector2.h"
-#include "scroll.h"
 #include "player.h"
 
 class Player;
-class Scroll;
 
 class SpecialWeapon {
 public:
@@ -48,5 +46,5 @@ public:
     void ReSetCoolTime();     
     void Damage(Player player);
     void Update(const Player& player, const char* keys);
-    void Draw(Scroll scroll);
+    void Draw();
 };

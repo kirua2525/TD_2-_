@@ -27,22 +27,6 @@ void Mouse::Update(Gun gun) {
 
 	Mouse::GetPos();
 
-	// Clamp X
-	if (this->pos.x - (int)this->radius.x <= 0) {
-		this->pos.x = 0 + (int)this->radius.x;
-	}
-	else if (this->pos.x + (int)this->radius.x >= 1280) {
-		this->pos.x = 1280 - (int)this->radius.x;
-	}
-
-	// Clamp Y
-	if (this->pos.y - (int)this->radius.y <= 0) {
-		this->pos.y = 0 + (int)this->radius.y;
-	}
-	else if (this->pos.y + (int)this->radius.y >= 720) {
-		this->pos.y = 720 - (int)this->radius.y;
-	}
-
 	if (Novice::IsPressMouse(0)) {
 		gun.isShot = true;
 	}

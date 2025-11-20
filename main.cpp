@@ -2,14 +2,13 @@
 #include <math.h>
 #include <time.h>
 
+#include "Vector2.h"
 #include "mouse.h"
 #include "player.h"
 #include "sword.h"
 #include "gun.h"
 #include "bullet.h"
 #include "specialWeapon.h"
-#include "line.h"
-#include "scroll.h"
 
 const char kWindowTitle[] = "LC1D_21_ナガタ_キルア_(確認課題)";
 
@@ -31,20 +30,6 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		Vector2F{ 10.0f,10.0f },
 		0.0f,
 		0x747400FF
-	);
-
-	Line line;
-	line.Initialize(
-		Vector2F{900.0f,0.0f},
-		Vector2F{900.0f,720.0f},
-		0.0f,
-		false
-	);
-
-	Scroll scroll;
-	scroll.Initialize(
-		0.0f,
-		5120.0f
 	);
 
 	Player player;
@@ -138,11 +123,12 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		/// ↓更新処理ここから
 		///
 
+
+
 		mouse.invisible();
 
 		//プレイヤーの更新
 		player.Update(keys,preKeys);
-		scroll.Update(player, line);
 
 		if (player.currentWeapon == Player::weaponType::SWORD) {
 			//剣の更新処理
@@ -170,29 +156,26 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		///
 
 		//プレイヤーの描画
-		player.Draw(scroll);
+		player.Draw();
 
 		if (player.currentWeapon == Player::weaponType::SWORD) {
-			//剣の描画
-			sword.Draw(scroll);
+			sword.Draw();
 
 		}
 		else if (player.currentWeapon == Player::weaponType::GUN) {
-			//銃の描画
-			gun.Draw(scroll);
+			gun.Draw();
 			mouse.Draw();
-			bullet.Draw(gun, scroll);
+			bullet.Draw(gun);
 
 		}
 		else if (player.currentWeapon == Player::weaponType::SPECIAL_ITEM) {
-			//特殊アイテムの描画
-			hammer.Draw(scroll);
+			hammer.Draw();
 		}
 
 		//debug
 		player.debugDraw();
 		Novice::ScreenPrintf(0,180, "isShot: %s", gun.isShot ? "true" : "false");
-		Novice::ScreenPrintf(0, 200, "scrollX:%f", scroll.scrollX);
+
 
 		///
 		/// ↑描画処理ここまで

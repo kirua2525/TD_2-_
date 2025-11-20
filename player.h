@@ -5,13 +5,11 @@
 #include <time.h>
 
 #include "Vector2.h"
-#include "scroll.h"
 #include "sword.h"
 #include "gun.h"
 #include "specialWeapon.h"
 
 class Vector2F;
-class Scroll;
 
 class Player {
 public:
@@ -80,7 +78,7 @@ public:
 
 	void Update(const char* keys, const char* prekeys);
 
-	void Draw(Scroll scroll);
+	void Draw();
 
 	void debugDraw();
 
