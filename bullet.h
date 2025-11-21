@@ -14,17 +14,18 @@ class Mouse;
 
 class Bullet {
 public:
-
-	Vector2F pos;
+	Vector2F pos[5];
 	Vector2F size;
 	Vector2F radius;
 	Vector2F speed;
-	Vector2F vel;
-	float angle;
+	Vector2F vel[5];
+	float angle[5];
 	float damage;
+	const int kCoolTime = 5;
+	int coolTimer;
 	int color;
 	//int texture;
-	bool isHit;
+	bool isHit[5];
 
 	~Bullet();
 

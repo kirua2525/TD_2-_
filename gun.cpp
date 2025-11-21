@@ -55,14 +55,13 @@ void Gun::Update(Player player, Mouse mouse) {
 	//}else if (player.texture = player.rightTexture) {
 	//	 mouse.pos.x >= player.pos.x;
 	//}
-
 	if (Novice::IsPressMouse(0)) {
 		this->isShot = true;
 	}
 	if (player.currentWeapon != Player::weaponType::GUN) {
 		this->isShot = false;
 	}
-
+	
 }
 
 void Gun::Draw() {

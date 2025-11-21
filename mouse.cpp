@@ -26,12 +26,10 @@ Mouse::~Mouse(){}
 void Mouse::Update(Gun gun) {
 
 	Mouse::GetPos();
-
 	if (Novice::IsPressMouse(0)) {
 		gun.isShot = true;
 	}
 }
-
 
 void Mouse::Draw() {
 	Novice::DrawBox(
