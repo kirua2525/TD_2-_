@@ -16,6 +16,7 @@ class Mouse;
 class Gun {
 public:
 	Vector2F pos;
+	Vector2F initialPos;
 	Vector2F size;
 	Vector2F radius;
 	float angle;
@@ -45,6 +46,7 @@ public:
 		int maxDamage,
 		bool isShot
 	);
+	void Reset();
 	void Update(Player player, Mouse mouse);
 	void Draw();
 

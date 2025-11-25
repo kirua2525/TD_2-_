@@ -32,6 +32,10 @@ void Gun::Initialize(
 
 Gun::~Gun(){}
 
+void Gun::Reset() {
+	this->isShot = false;       
+}
+
 void Gun::Update(Player player, Mouse mouse) {
 
 	this->pos.x = player.pos.x + player.radius.x;
@@ -55,10 +59,12 @@ void Gun::Update(Player player, Mouse mouse) {
 	//}else if (player.texture = player.rightTexture) {
 	//	 mouse.pos.x >= player.pos.x;
 	//}
-	if (Novice::IsPressMouse(0)) {
-		this->isShot = true;
+	if (player.currentWeapon == Player::weaponType::GUN){
+		Gun::Reset();
 	}
-	if (player.currentWeapon != Player::weaponType::GUN) {
+	if (player.currentWeapon == Player::weaponType::GUN && Novice::IsTriggerMouse(0)){
+		this->isShot = true;
+	}else {
 		this->isShot = false;
 	}
 	
