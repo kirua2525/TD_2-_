@@ -84,8 +84,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 	Bullet bullet;
 	bullet.Initialize(
-		Vector2F{ player.pos.x, player.pos.y },
-		Vector2F{ 10.0f,10.0f },
+		Vector2F{ player.pos.x, player.pos.y - 5.0f },
+		Vector2F{ 15.0f,10.0f },
 		Vector2F{ 3.0f,3.0f },
 		Vector2F{ 5.0f,5.0f },
 		Vector2F{ 0.0f,0.0f },
