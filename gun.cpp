@@ -49,8 +49,11 @@ void Gun::Update(Player player, Mouse mouse) {
 
 	Novice::GetMousePosition(&mouse.pos.x, &mouse.pos.y);
 
-	float dx = mouse.pos.x - this->pos.x;
-	float dy = mouse.pos.y - this->pos.y;
+	float muzzleX = this->pos.x + this->size.x;
+	float muzzleY = this->pos.y + this->size.y / 2;
+
+	float dx = mouse.pos.x - muzzleX;
+	float dy = mouse.pos.y - muzzleY;
 
 	this->angle = atan2f(dy, dx);
 

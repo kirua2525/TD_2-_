@@ -72,7 +72,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	Gun gun;
 	gun.Initialize(
 		Vector2F{ player.pos.x, player.pos.y },
-		Vector2F{ 10.0f,10.0f },
+		Vector2F{ 30.0f,10.0f },
 		Vector2F{ 10.0f,3.0f },
 		0.0f,
 		RED,
