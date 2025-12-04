@@ -15,8 +15,6 @@ public:
 	Vector2F size;
 	Vector2F radius;
 	float angle;
-	float angleRotate;
-	float rotationDirection;
 	int color;
 	int texture;
 	int damage;
@@ -33,7 +31,6 @@ public:
 		Vector2F size,
 		Vector2F radius,
 		float angle,
-		float rotate,
 		int color,
 		//int texture,
 		int damage,

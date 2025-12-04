@@ -8,7 +8,6 @@ void Sword::Initialize(
 	Vector2F swordSize,
 	Vector2F swordRadius,
 	float swordAngle,
-	float swordAngleRotate,
 	int swordColor,
 	//int swordTexture,
 	int swordDamage,
@@ -20,7 +19,6 @@ void Sword::Initialize(
 	this->size = swordSize;
 	this->radius = swordRadius;
 	this->angle = swordAngle;
-	this->angleRotate = swordAngleRotate;
 	this->color = swordColor;
 	//this->texture = swordTexture;
 	this->damage = swordDamage;
@@ -48,13 +46,6 @@ void Sword::Update(Player player, const char* keys) {
 	}
 	if (keys[DIK_D]) {
 		isClockwise = true;
-	}
-
-	if (isClockwise) {
-		this->angle += this->angleRotate;
-	}
-	else {
-		this->angle -= this->angleRotate;
 	}
 }
 

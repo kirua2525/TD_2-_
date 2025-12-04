@@ -61,7 +61,6 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		Vector2F{ 50.0f,3.0f },
 		Vector2F{ 50.0f,3.0f },
 		0.0f,
-		0.2f,
 		WHITE,
 		rand() % ((100 + 50 + 1) + 50),
 		10,
