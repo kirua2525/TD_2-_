@@ -47,6 +47,12 @@ public:
 	bool moveRight;
 	bool moveLeft;
 	weaponType currentWeapon;
+	float frameCount;
+	float endFrame;
+	float startX;
+	float targetX;
+	bool easingActive;
+	bool facingRight;
 
 	~Player();
 
@@ -72,11 +78,19 @@ public:
 		bool spacepressed,
 		bool moveRight,
 		bool moveLeft,
-		weaponType currentWeapon
+		weaponType currentWeapon,
+		float frameCount,
+		float endFrame,
+		bool easingActive,
+		bool facingRight
 	);
 	void Gravity();
 
 	void Update(const char* keys, const char* prekeys);
+
+	void EaseInQuadRight();
+
+	void EaseInQuadLeft();
 
 	void Draw();
 

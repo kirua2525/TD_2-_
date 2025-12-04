@@ -52,7 +52,11 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		false,
 		false,
 		false,
-		Player::weaponType::SWORD //最初を剣にする
+		Player::weaponType::SWORD, //最初を剣にする
+		0.0f,
+		10.0f,
+		false,
+		true
     );
 
 	Sword sword;

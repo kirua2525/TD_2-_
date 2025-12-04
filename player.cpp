@@ -22,7 +22,11 @@ void Player::Initialize(
 	bool playerSpacePressed,
 	bool playerMoveRight,
 	bool playerMoveLeft,
-	weaponType playerCurrentWeapon
+	weaponType playerCurrentWeapon,
+	float playerFrameCount,
+	float playerEndFrame,
+	bool playerEasingActive,
+	bool playerFacingRight
 ) {
 	this->pos = playerPos;
 	this->velocity = playerVelocity;
@@ -45,6 +49,10 @@ void Player::Initialize(
 	this->moveRight = playerMoveRight;
 	this->moveLeft = playerMoveLeft;
 	this->currentWeapon = playerCurrentWeapon;
+	this->frameCount = playerFrameCount;
+	this->endFrame = playerEndFrame;
+	this->easingActive = playerEasingActive;
+	this->facingRight = playerFacingRight;
 }
 
 Player::~Player(){}
@@ -54,6 +62,38 @@ void Player::Gravity() {
 		this->velocity.y += 0.7f;
 	}else {
 		this->velocity.y += 0.5f; // Gravity
+	}
+}
+
+void Player::EaseInQuadRight() {
+	float t = this->frameCount / (this->endFrame - 1);
+	if (t > 1.0f) t = 1.0f;
+
+	if (this->frameCount == 0) {
+		this->startX = this->pos.x;
+		this->targetX = this->pos.x + 200.0f;
+	}
+
+	float c = this->targetX - this->startX;
+
+	this->pos.x = c * (t * t) + this->startX;
+}
+
+void Player::EaseInQuadLeft() {
+	float t = this->frameCount / (this->endFrame - 1);
+	if (t > 1.0f) t = 1.0f;
+
+	if (this->frameCount == 0) {
+		this->startX = this->pos.x;
+		this->targetX = this->pos.x - 200.0f;
+	}
+
+	float c = this->targetX - this->startX;
+
+	this->pos.x = c * (t * t) + this->startX;
+
+	if (this->pos.x <= 0) {
+		this->pos.x = 0;
 	}
 }
 
@@ -84,10 +124,10 @@ void Player::Update(const char* keys, const char* prekeys) {
 
 	//jump
 	if (this->isOnGround) {
-		if (wPressed || upPressed||spacePressed) {
-		this->velocity.y = -this->jumpSpeed;
-		this->isOnGround = false;
-	}
+		if (wPressed || upPressed) {
+			this->velocity.y = -this->jumpSpeed;
+			this->isOnGround = false;
+		}
 	}
 
 	Player::Gravity();
@@ -112,6 +152,12 @@ void Player::Update(const char* keys, const char* prekeys) {
 		this->currentWeapon = SPECIAL_ITEM;
 	}
 
+	if (moveRight) {
+		facingRight = true;
+	}
+	if (moveLeft) {
+		facingRight = false;
+	}
 
 	//Processing for each weapon
 	switch (this->currentWeapon) {
@@ -119,6 +165,24 @@ void Player::Update(const char* keys, const char* prekeys) {
 		if (this->isAttackSword) {
 			//boss
 		}
+		if (this->spacePressed) {
+			this->easingActive = true;
+			this->frameCount = 0;
+		}
+
+		if (this->easingActive && this->frameCount < this->endFrame) {
+			if (this->facingRight) {
+
+				EaseInQuadRight();
+
+			}else {
+
+				EaseInQuadLeft();
+
+			}
+			this->frameCount++;
+		}
+
 		break;
 
 	case GUN:

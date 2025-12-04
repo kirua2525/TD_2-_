@@ -38,8 +38,19 @@ void Sword::Damage() {
 void Sword::Update(Player player, const char* keys) {
 
 	this->pos.x = player.pos.x + player.radius.x;
-	this->pos.y = player.pos.y + player.radius.y;
-	this->pos.y = this->pos.y += this->radius.y / 2;
+	this->pos.y = player.pos.y + player.radius.y + this->radius.y / 2;
+
+	if (player.moveRight) {
+		if (this->size.x < 0) {
+			this->size.x = -this->size.x; 
+		}
+	}
+
+	else if (player.moveLeft) {
+		if (this->size.x > 0) {
+			this->size.x = -this->size.x; 
+		}
+	}
 
 	if (keys[DIK_A]) {
 		isClockwise = false;
