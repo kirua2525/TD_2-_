@@ -131,5 +131,7 @@
     <ClInclude Include="sword.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="mouse.h" />
+    <ClInclude Include="struct.h" />
+    <ClInclude Include="Object.h" />
   </ItemGroup>
 </Project>
