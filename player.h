@@ -89,8 +89,13 @@ public:
 	void Update(const char* keys, const char* prekeys);
 
 	void EaseInQuadRight();
-
 	void EaseInQuadLeft();
+
+	void EaseInExpoRight();
+	void EaseInExpoLeft();
+
+	void EaseInOutExpoRight();
+	void EaseInOutExpoLeft();
 
 	void Draw();
 

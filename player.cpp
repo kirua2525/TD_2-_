@@ -71,7 +71,7 @@ void Player::EaseInQuadRight() {
 
 	if (this->frameCount == 0) {
 		this->startX = this->pos.x;
-		this->targetX = this->pos.x + 200.0f;
+		this->targetX = this->pos.x + 500.0f;
 	}
 
 	float c = this->targetX - this->startX;
@@ -85,7 +85,7 @@ void Player::EaseInQuadLeft() {
 
 	if (this->frameCount == 0) {
 		this->startX = this->pos.x;
-		this->targetX = this->pos.x - 200.0f;
+		this->targetX = this->pos.x - 500.0f;
 	}
 
 	float c = this->targetX - this->startX;
@@ -97,10 +97,102 @@ void Player::EaseInQuadLeft() {
 	}
 }
 
+void Player::EaseInExpoRight() {
+	float t = frameCount / (endFrame - 1);
+	if (t > 1.0f) t = 1.0f;
+
+	if (this->frameCount == 0) {
+		this->startX = this->pos.x;
+		this->targetX = this->pos.x + 500.0f;
+	}
+
+	float c = targetX - startX;
+
+	if (t == 0.0f) {
+		this->pos.x = startX;
+	}	else {
+		this->pos.x = c * powf(2.0f, 10.0f * (t - 1.0f)) + startX;
+	}
+}
+
+void Player::EaseInExpoLeft() {
+	float c = startX - targetX;
+	float t = frameCount / (endFrame - 1);
+	if (t > 1.0f) t = 1.0f;
+
+	if (this->frameCount == 0) {
+		this->startX = this->pos.x;
+		this->targetX = this->pos.x - 500.0f;
+	}
+
+	if (t == 0.0f) {
+		this->pos.x = startX;
+	}else {
+		this->pos.x = startX - c * powf(2.0f, 10.0f * (t - 1.0f));
+	}
+
+	if (this->pos.x <= 0) {
+		this->pos.x = 0;
+	}
+}
+
+void Player::EaseInOutExpoRight() {
+	float c = targetX - startX;
+	float t = frameCount / (endFrame - 1);
+	if (t > 1.0f) t = 1.0f;
+
+	if (this->frameCount == 0) {
+		this->startX = this->pos.x;
+		this->targetX = this->pos.x + 500.0f;
+	}
+
+	if (t == 0.0f) {
+		this->pos.x = startX;
+	}
+	else if (t == 1.0f) {
+		this->pos.x = targetX;
+	}
+	else if (t < 0.5f) {
+		this->pos.x = startX + (c / 2.0f) * powf(2.0f, (20.0f * t) - 10.0f);
+	}
+	else {
+		this->pos.x = startX + (c / 2.0f) * (2.0f - powf(2.0f, (-20.0f * t) + 10.0f));
+	}
+}
+
+void Player::EaseInOutExpoLeft() {
+	float t = frameCount / (endFrame - 1);
+	if (t > 1.0f) t = 1.0f;
+
+	if (this->frameCount == 0) {
+		this->startX = this->pos.x;
+		this->targetX = this->pos.x - 500.0f;
+	}
+
+	float c = startX - targetX;
+
+	if (t == 0.0f) {
+		this->pos.x = startX;
+	}
+	else if (t == 1.0f) {
+		this->pos.x = targetX;
+	}
+	else if (t < 0.5f) {
+		this->pos.x = startX - (c / 2.0f) * powf(2.0f, (20.0f * t) - 10.0f);
+	}
+	else {
+		this->pos.x = startX - (c / 2.0f) * (2.0f - powf(2.0f, (-20.0f * t) + 10.0f));
+	}
+
+	if (this->pos.x <= 0) {
+		this->pos.x = 0;
+	}
+}
+
 void Player::Update(const char* keys, const char* prekeys) {
 	//left
 
-	this->moveRight = keys[DIK_D] || keys[DIK_LEFT] != 0;
+	this->moveRight = keys[DIK_D] || keys[DIK_RIGHT] != 0;
 	this->moveLeft = keys[DIK_A] || keys[DIK_LEFT] != 0;
 	if(this->moveLeft) {
 		this->pos.x -= this->velocity.x;
@@ -175,7 +267,7 @@ void Player::Update(const char* keys, const char* prekeys) {
 
 				EaseInQuadRight();
 
-			}else {
+			}else{
 
 				EaseInQuadLeft();
 
@@ -189,12 +281,52 @@ void Player::Update(const char* keys, const char* prekeys) {
 		if (this->isAttackGun) {
 			//boss
 		};
+
+		if (this->spacePressed) {
+			this->easingActive = true;
+			this->frameCount = 0;
+		}
+
+		if (this->easingActive && this->frameCount < this->endFrame) {
+			if (this->facingRight) {
+
+				EaseInOutExpoRight();
+
+			}
+			else {
+
+				EaseInOutExpoLeft();
+
+			}
+			this->frameCount++;
+		}
+
 		break;
 
 	case SPECIAL_ITEM:
 		if (this->isAttackSpecialItem) {
 			//boss
 		}
+
+		if (this->spacePressed) {
+			this->easingActive = true;
+			this->frameCount = 0;
+		}
+
+		if (this->easingActive && this->frameCount < this->endFrame) {
+			if (this->facingRight) {
+
+				EaseInExpoRight();
+
+			}
+			else {
+
+				EaseInExpoLeft();
+
+			}
+			this->frameCount++;
+		}
+
 		break;
 	}
 }
